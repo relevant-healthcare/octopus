@@ -44,6 +44,9 @@ If you are trying to scope everything to a specific shard, use Octopus.using ins
       end
 
       def init_with(coder)
+        obj = super
+        return obj unless Octopus.enabled?
+
         current_shard_value = if Octopus.rails40? || Octopus.rails41_only?
           coder['attributes']['current_shard'] if coder['attributes']['current_shard'].present?
         else
