@@ -45,6 +45,7 @@ If you are trying to scope everything to a specific shard, use Octopus.using ins
 
       def init_with(coder)
         obj = super
+        return obj unless Octopus.enabled?
 
         return obj if obj.class.connection_proxy.current_model_replicated?
 
