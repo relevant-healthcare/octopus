@@ -48,7 +48,7 @@ If you are trying to scope everything to a specific shard, use Octopus.using ins
 
         return obj unless Octopus.enabled?
         return obj if obj.class.connection_proxy.current_model_replicated?
-        return obj if coder['attributes']['current_shard'].blank? && coder['attributes']['current_shard'].value.blank?
+        return obj if coder['attributes']['current_shard']&.value.blank?
 
         current_shard_value = coder['attributes']['current_shard'].value
 
